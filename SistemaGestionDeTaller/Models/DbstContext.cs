@@ -152,11 +152,8 @@ public partial class DbstContext : DbContext
             entity.ToTable("Cart");
 
         });
-
         OnModelCreatingPartial(modelBuilder);
     }
-
-    
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 }
