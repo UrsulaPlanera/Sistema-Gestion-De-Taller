@@ -1,0 +1,104 @@
+﻿@model IEnumerable<SistemaGestionDeTaller.Areas.Main.Models.Service>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<p class="display-6">Services</p>
+
+<div class="mt-3 mb-5 d-flex justify-content-between">
+    <a class="btn btn-secondary" asp-action="Create">
+        <i class="bi bi-plus-circle mx-1" style="color: #fff;"></i>
+        AGREGAR
+    </a>
+
+    <section class="d-flex">
+        <form method="get" asp-controller="Services" asp-action="Index">
+            <div class="input-group">
+                <input class="form-control" type="text" name="patent" placeholder="Ingresar patente..." />
+                <button class="btn btn-secondary" type="submit">Buscar</button>
+            </div>
+        </form>
+    </section>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.Patent)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.TotalPrice)
+            </th>
+            <th>
+                Opciones
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @if(Model == null || Model.Count() <1)
+        {
+            <tr>
+                <td class="alert-danger text-center" colspan="4">No se han encontrado resultados.</td>
+            </tr>
+        }
+        else
+        {
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td scope="row">
+                        @Html.DisplayFor(modelItem => item.Date)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Patent)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TotalPrice)
+                    </td>
+                    <td>
+                        <div class="d-flex">
+                            <a class="btn mx-1" style="background-color: #A6DF98;" asp-action="Edit" asp-route-id="@item.Id">
+                                <i class="bi bi-pen" style="color: #fff;"></i>
+                            </a>
+                            <a class="btn mx-1" style="background-color: #D1A7FF;" asp-action="Details" asp-route-id="@item.Id">
+                                <i class="bi bi-eye" style="color: #fff;"></i>
+                            </a>
+                            <button type="button" class="btn mx-1" style="background-color: #FC9482;" data-bs-toggle="modal" data-bs-target="#deleteElem">
+                                <i class="bi bi-trash" style="color: #fff;"></i>
+                            </button>
+                            <div class="modal fade" id="deleteElem" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="deleteElemLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body text-center">
+                                            <p>¿Eliminar producto?</p>
+                                            <form asp-action="Delete" method="post">
+                                                <input type="hidden" name="id" value="@item.Id" />
+                                                <button type="submit" class="btn" style="background-color: #FC9482; color: #fff;" asp-action="Delete">
+                                                    Confirmar
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <form method="post">
+                                <input type="hidden" name="id" value="@item.Id" />
+                                <button type="submit" class="btn mx-1" style="background-color: #73D9E2;" asp-controller="Report" asp-action="ReportService">
+                                    <i class="bi bi-printer" style="color: #fff;"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

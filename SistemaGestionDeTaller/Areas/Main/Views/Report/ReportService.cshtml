@@ -1,0 +1,91 @@
+﻿@model SistemaGestionDeTaller.Areas.Main.Models.ViewModel.ReportServiceModel
+
+@{
+    Layout = "_LayoutReport";
+}
+
+<header>
+    <table style="width: 100%" class="table-component">
+        <tr>
+            <td>
+                <table>
+                    <tr>
+                        <td style="font-size: 2rem;">FACTURA</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>@Model.DataConfig.Street</span>
+                            <span>@Model.DataConfig.Number</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>@Model.DataConfig.Locality</span>
+                            <span>@Model.DataConfig.Cp</span>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td>
+                <table style="text-align: right; margin-left:auto;">
+                    <tr>
+                        <td style="font-size:1.5rem;">
+                            <span><strong>GestionDeTallerMecánico</strong></span>
+                            <i class="bi bi-wrench-adjustable-circle" style="color: #029BD5;"></i>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</header>
+<br />
+<br />
+
+<!--seccion datos-->
+<section>
+    <table class="table-component" style="text-align:right; margin-left:auto;">
+        <tr style="text-align:left;">
+            <th><span>@Html.DisplayNameFor(model => model.ServiceObjetct.Id)</span><span>:</span></th>
+            <td style="text-align: right;"><span>#</span><span>@Html.DisplayFor(model => model.ServiceObjetct.Id)</span></td>
+        </tr>
+        <tr style="text-align:left;">
+            <th><span>@Html.DisplayNameFor(model => model.ServiceObjetct.Patent)</span><span>:</span></th>
+            <td style="text-align: right;">@Html.DisplayFor(model => model.ServiceObjetct.Patent)</td>
+        </tr>
+        <tr style="text-align:left;">
+            <th><span>@Html.DisplayNameFor(model => model.ServiceObjetct.Brand)</span><span>:</span></th>
+            <td style="text-align: right;">@Html.DisplayFor(model => model.ServiceObjetct.Brand)</td>
+        </tr>
+        <tr style="text-align:left;">
+            <th><span>@Html.DisplayNameFor(model => model.ServiceObjetct.Model)</span><span>:</span></th>
+            <td style="text-align: right;">@Html.DisplayFor(model => model.ServiceObjetct.Model)</td>
+        </tr>
+    </table>
+</section>
+<br />
+<br />
+
+<!--seccion detalle-->
+<table class="table-component" style="width:100%;text-align:left;">
+    <thead style="border-bottom: solid 1px #979797">
+        <tr>
+            <th scope="col">@Html.DisplayNameFor(model => model.ServiceObjetct.Date)</th>
+            <th scope="col">@Html.DisplayNameFor(model => model.ServiceObjetct.Description)</th>
+            <th scope="col">@Html.DisplayNameFor(model => model.ServiceObjetct.TotalPrice)</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>@Model.ServiceObjetct.Date</td>
+            <td>@Model.ServiceObjetct.Description</td>
+            <td>@Model.ServiceObjetct.TotalPrice</td>
+        </tr>
+    </tbody>
+    <tfoot style="margin-top: 20px; background-color: #029BD5;">
+        <tr>
+            <th style="color:#fff;" scope="col" colspan="2">@Html.DisplayNameFor(model => model.ServiceObjetct.TotalPrice)</th>
+            <td style="color:#fff;">$@Model.ServiceObjetct.TotalPrice</td>
+        </tr>
+    </tfoot>
+</table>

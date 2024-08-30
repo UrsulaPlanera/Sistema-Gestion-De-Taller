@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
+*, a {
+    color: #393939;
+    font-family: "Rubik", sans-serif;
+}
+
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 575px){
+    #BarMenuOptions {
+        display: none !important;
+    }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+    box-shadow: none;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+.validation-summary {
+    font-size: 12px;
+    max-width: 200px;
+    text-align: center;
+}
+
+.validation-summary li {
+    list-style: none;
+    color: #f31717;
+}
+
+.validation-text span {
+    font-size: 12px !important;
+    color: #f31717 !important;
+}
+
+.authentication-box {
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+    border-radius: 1rem;
+}

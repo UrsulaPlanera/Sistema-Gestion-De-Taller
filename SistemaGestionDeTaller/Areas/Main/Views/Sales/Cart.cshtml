@@ -1,0 +1,71 @@
+﻿@model List<SistemaGestionDeTaller.Areas.Main.Models.ViewModel.ProductCart>
+
+@{
+    ViewData["Title"] = "Carrito";
+}
+
+<p class="display-6">Confirmar venta</p>
+
+<a class="btn py-1 my-3 btn-secondary" asp-action="AddCart">
+    <i class="bi bi-box-arrow-in-left" style="color: #fff;"></i>
+    Regresar
+</a>
+
+@if(Model != null && Model.Count > 0)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Producto</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Unidades</th>
+                <th scope="col">Opciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var item in Model)
+            {
+                <tr>
+                    <td>@item.NameProduct</td>
+                    <td>@item.Price</td>
+                    <td>@item.Units</td>
+                    <td>
+                        <form method="post">
+                            <input type="hidden" name="id" value="@item.IdCart" />
+                            <button class="btn p-1" type="submit" class="btn btn-danger" style="background-color: #FC9482;" asp-action="RemoveFromCart">
+                                <i class="bi bi-trash" style="color: #fff;"></i>
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <th class="fw-bold" colspan="3">Total</th>
+                <td>
+                    $@{
+                        var price = new decimal();
+                        foreach (var item in Model)
+                        {
+                            price += item.Price;
+                        }
+                    }@price
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+
+    <div class="text-center">
+        <form method="post">
+            <button class="btn mx-1" style="background-color: #A6DF98; color: #fff;" type="submit" asp-action="ConfirmCart">
+                <i class="bi bi-check-lg" style="color: #fff;"></i>
+                Confirmar venta
+            </button>
+        </form>
+    </div>
+}
+else
+{
+    <p class="alert-secondary py-2 px-1 my-2">No hay productos en el carrito.</p>
+}

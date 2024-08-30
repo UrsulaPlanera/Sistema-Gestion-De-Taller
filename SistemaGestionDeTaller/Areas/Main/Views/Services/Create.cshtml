@@ -1,0 +1,59 @@
+﻿@model SistemaGestionDeTaller.Areas.Main.Models.Service
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+
+<p class="display-6">Registrar nuevo service</p>
+
+<a class="btn py-1 my-3 btn-secondary" asp-action="Index">
+    <i class="bi bi-box-arrow-in-left" style="color: #fff;"></i>
+    Regresar
+</a>
+
+<section>
+    <form asp-action="Create">
+        <div asp-validation-summary="ModelOnly" class="validation-summary"></div>
+        <div class="form-group my-3">
+            <label asp-for="Patent" class="control-label"></label>
+            <input asp-for="Patent" class="form-control" placeholder="Patente" />
+            <span asp-validation-for="Patent" class="text-danger"></span>
+        </div>
+        <div class="form-group my-3">
+            <label asp-for="Brand" class="control-label"></label>
+            <input asp-for="Brand" class="form-control" placeholder="Marca" />
+            <span asp-validation-for="Brand" class="text-danger"></span>
+        </div>
+        <div class="form-group my-3">
+            <label asp-for="Model" class="control-label"></label>
+            <input asp-for="Model" class="form-control" placeholder="Modelo" />
+            <span asp-validation-for="Model" class="text-danger"></span>
+        </div>
+        <div class="form-group my-3">
+            <label asp-for="ClientName" class="control-label"></label>
+            <input asp-for="ClientName" class="form-control" placeholder="Nombre completo" />
+            <span asp-validation-for="ClientName" class="text-danger"></span>
+        </div>
+        <div class="form-group my-3">
+            <label asp-for="Description" class="control-label"></label>
+            <input asp-for="Description" class="form-control" placeholder="Descripcion" />
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+        <div class="my-3">
+            <label asp-for="TotalPrice" class="control-label"></label>
+            <div class="input-group">
+                <span class="input-group-text">$</span>
+                <input asp-for="TotalPrice" class="form-control" />
+            </div>
+            <span asp-validation-for="TotalPrice" class="text-danger"></span>
+        </div>
+        <div class="form-group my-3">
+            <input type="submit" value="Registrar" class="btn" style="background-color: #A6DF98; color: #fff;" />
+        </div>
+    </form>
+</section>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

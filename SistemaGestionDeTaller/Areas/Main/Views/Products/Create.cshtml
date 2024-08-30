@@ -1,0 +1,56 @@
+﻿@model SistemaGestionDeTaller.Areas.Main.Models.Product
+
+@{
+    ViewData["Title"] = "Añadir producto";
+}
+
+<p class="display-6">Añadir Producto</p>
+
+<a class="btn py-1 my-3 btn-secondary" asp-action="Index">
+    <i class="bi bi-box-arrow-in-left" style="color: #fff;"></i>
+    Regresar
+</a>
+
+<section>
+    <form asp-action="Create">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group my-3">
+            <label asp-for="Name" class="control-label"></label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="form-group my-3">
+            <label asp-for="DescriptionProduct" class="control-label"></label>
+            <input asp-for="DescriptionProduct" class="form-control" />
+            <span asp-validation-for="DescriptionProduct" class="text-danger"></span>
+        </div>
+        <div class="form-group my-3">
+            <label asp-for="InvestmentPrice" class="control-label"></label>
+            <div class="input-group">
+                <span class="input-group-text">$</span>
+                <input asp-for="InvestmentPrice" class="form-control" />
+            </div>
+            <span asp-validation-for="InvestmentPrice" class="text-danger"></span>
+        </div>
+        <div class="form-group my-3">
+            <label asp-for="SalePrice" class="control-label"></label>
+            <div class="input-group">
+                <span class="input-group-text">$</span>
+                <input asp-for="SalePrice" class="form-control" />
+            </div>
+            <span asp-validation-for="SalePrice" class="text-danger"></span>
+        </div>
+        <div class="form-group my-3">
+            <label asp-for="Stock" class="control-label"></label>
+            <input asp-for="Stock" class="form-control" />
+            <span asp-validation-for="Stock" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Añadir" class="btn" style="background-color: #A6DF98; color: #fff;" />
+        </div>
+    </form>
+</section>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

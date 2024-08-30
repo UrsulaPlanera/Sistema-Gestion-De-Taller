@@ -1,0 +1,31 @@
+﻿@{
+    ViewData["Title"] = "Recuperacion";
+}
+
+<div>
+    <p class="display-6 p-2 text-center">Recuperar contraseña</p>
+
+    <div>
+        <article class="p-3 my-3 authentication-box">
+            <form class="p-2">
+                <div class="my-2 w-100 d-flex" style="border-bottom:solid 1px #8d8d8d;">
+                    <input type="text" placeholder="Ingresar email" style="border:none;outline:none;box-shadow:none; width: 100%; background-color:transparent;" disabled />
+                    <span><i class="bi bi-envelope-at-fill" style="color: #393939"></i></span>
+                </div>
+                <input type="submit" value="Continuar" class="btn btn-secondary w-100 my-2" disabled />
+            </form>
+        </article>
+
+        <article class="p-2 my-3 authentication-box" style="background-color: #029BD5">
+            <section class="my-2 text-center">
+                <a style="color: #fff; text-decoration:none" asp-controller="Authentication" asp-action="Login">Regresar</a>
+            </section>
+        </article>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

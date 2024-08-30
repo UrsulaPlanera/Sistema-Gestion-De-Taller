@@ -1,0 +1,89 @@
+﻿@model SistemaGestionDeTaller.Areas.Main.Models.ViewModel.ReportSaleModel
+
+@{
+    Layout = "_LayoutReport";
+}
+
+<header>
+    <table style="width: 100%" class="table-component">
+        <tr>
+            <td>
+                <table>
+                    <tr>
+                        <td style="font-size: 2rem;">FACTURA</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>@Model.DataConfig.Street</span>
+                            <span>@Model.DataConfig.Number</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>@Model.DataConfig.Locality</span>
+                            <span>@Model.DataConfig.Cp</span>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td>
+                <table style="text-align: right; margin-left:auto;">
+                    <tr>
+                        <td style="font-size:1.5rem;">
+                            <span><strong>GestionDeTallerMecánico</strong></span>
+                            <i class="bi bi-wrench-adjustable-circle" style="color: #029BD5;"></i>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</header>
+<br />
+<br />
+
+<!--seccion datos-->
+<section>
+    <table class="table-component" style="text-align:right; margin-left:auto;">
+        <tr style="text-align:left;">
+            <th>N° de venta:</th>
+            <td style="text-align: right;"><span>#</span><span>@Html.DisplayFor(model => model.SaleObjetct.Id)</span></td>
+        </tr>
+        <tr style="text-align:left;">
+            <th><span>@Html.DisplayNameFor(model => model.SaleObjetct.Date)</span><span>:</span></th>
+            <td style="text-align: right;">@Html.DisplayFor(model => model.SaleObjetct.Date)</td>
+        </tr>
+    </table>
+</section>
+<br />
+<br />
+
+<section>
+    <table class="table-component" style="width:100%;text-align:left;">
+        <thead style="border-bottom: solid 1px #979797">
+            <tr>
+                <th scope="col">Producto</th>
+                <th scope="col">Unidades</th>
+                <th scope="col">Precio Unidad</th>
+                <th scope="col">Precio total</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var item in Model.ConceptsList)
+            {
+                <tr>
+                    <td>@item.NameProduct</td>
+                    <td>@item.Units</td>
+                    <td>@item.UnitPrice</td>
+                    <td>@item.TotalPrice</td>
+                </tr>
+            }
+        </tbody>
+        <tfoot style="margin-top: 20px; background-color: #029BD5;">
+            <tr>
+                <th style="color:#fff;" scope="col" colspan="3">Total</th>
+                <td style="color:#fff;">$@Model.SaleObjetct.TotalPrice</td>
+            </tr>
+        </tfoot>
+    </table>
+</section>

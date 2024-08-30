@@ -1,0 +1,93 @@
+﻿<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+    <div class="container-fluid d-flex justify-content-between align-items-center">
+        <a class="navbar-brand mx-1" asp-area="Main" asp-controller="Utilities" asp-action="Index">
+            <span class="fw-bold">GestionDeTallerMecánico</span>
+            <i class="bi bi-wrench-adjustable-circle" style="color: #029BD5;"></i>
+        </a>
+        <!--buttonoffcanvas-->
+        <button class="navbar-toggler btn mx-1" type="button" data-bs-toggle="offcanvas" data-bs-target="#SiderBarMenuOptions" aria-controls="SiderBarMenuOptions">
+            <i class="bi bi-list" style="font-size: 1.5rem;color: #029BD5;"></i>
+        </button>
+    </div>
+</nav>
+
+<nav class="nav mb-3 w-100 d-flex justify-content-around align-items-center" id="BarMenuOptions">
+    <div class="d-flex align-items-center">
+        <a class="p-2 d-flex align-items-center btn" asp-controller="Utilities" asp-action="Index">
+            <i class="bi bi-shop-window" style="color: #029BD5;"></i>
+            <span class="mx-2">Inicio</span>
+        </a>
+        <a class="p-2 d-flex align-items-center btn" asp-controller="Services" asp-action="Index">
+            <i class="bi bi-car-front-fill" style="color: #029BD5;"></i>
+            <span class="mx-2">Services</span>
+        </a>
+        <a class="nav-link dropdown-toggle p-2" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-cart" style="color: #029BD5;"></i>
+            <span class="mx-2">Ventas</span>
+        </a>
+        <ul class="dropdown-menu p-4">
+            <li class="my-2">
+                <a class="text-decoration-none" asp-controller="Products" asp-action="Index">
+                    Gestionar productos
+                </a>
+            </li>
+            <li class="my-2">
+                <a class="text-decoration-none" asp-controller="Sales" asp-action="Index">
+                    Gestionar ventas
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div>
+        <a class="p-2 btn d-flex align-items-center" style="background-color: #029BD5;" asp-controller="Data" asp-action="Index">
+            <i class="bi bi-gear" style="color: #fff;"></i>
+            <span style="padding-left: 1rem; color: #fff;">Datos taller</span>
+        </a>
+    </div>
+</nav>
+
+<!--offcanvas-->
+<div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="SiderBarMenuOptions" aria-labelledby="SiderBarMenuOptionsLabel">
+    <div class="offcanvas-header">
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <div class="d-flex justify-content-center mb-4">
+            <i class="bi bi-house" style="color: #029BD5; font-size: 1.5rem;"></i>
+        </div>
+        <div class=" mb-3">
+            <a class="p-2 btn" asp-controller="Utilities" asp-action="Index">
+                <i class="bi bi-shop-window" style="color: #029BD5;"></i>
+                <span style="padding-left: 1rem;">Inicio</span>
+            </a>
+        </div>
+        <div class=" mb-3">
+            <a class="p-2 btn" asp-controller="Services" asp-action="Index">
+                <i class="bi bi-car-front-fill" style="color: #029BD5;"></i>
+                <span style="padding-left: 1rem;">Services</span>
+            </a>
+        </div>
+        <div class="dropdown mb-3">
+            <button class="p-2 btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseProducts" aria-expanded="false">
+                <i class="bi bi-cart" style="color: #029BD5;"></i>
+                <span style="padding-left: 1rem;">Ventas</span>
+            </button>
+            <div class="collapse mb-3" id="collapseProducts">
+                <div class="card card-body d-flex flex-column">
+                    <a class="py-2 text-decoration-none" asp-controller="Products" asp-action="Index">
+                        Gestionar productos
+                    </a>
+                    <a class="py-2 text-decoration-none" asp-controller="Sales" asp-action="Index">
+                        Gestionar productos
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class=" mb-3">
+            <a class="p-2 btn" style="background-color: #029BD5;" asp-controller="Data" asp-action="Index">
+                <i class="bi bi-gear" style="color: #fff;"></i>
+                <span style="padding-left: 1rem; color: #fff;">Datos taller</span>
+            </a>
+        </div>
+    </div>
+</div>

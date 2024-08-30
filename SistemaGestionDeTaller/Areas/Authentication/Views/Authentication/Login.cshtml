@@ -1,0 +1,36 @@
+﻿@{
+    ViewData["Title"] = "Login";
+}
+
+<div>
+    <p class="display-6 p-2 text-center">Ingresar</p>
+    <div>
+        <article class="p-3 my-3 authentication-box">
+            <form asp-action="Login" method="post" class="p-2">
+
+                <div class="p-2 my-2" style="border-bottom:solid 1px #8d8d8d;">
+                    <input type="text" name="username" placeholder="Usuario" style="border:none;outline:none;box-shadow:none" />
+                    <i class="bi bi-person blue" style="color: #029BD5"></i>
+                </div>
+                <div class="p-2 p-2 my-2" style="border-bottom:solid 1px #8d8d8d">
+                    <input type="password" name="password" placeholder="Contraseña" style="border:none;outline:none;box-shadow:none" />
+                    <i class="bi bi-lock" style="color: #029BD5"></i>
+                </div>
+                <div asp-validation-summary="ModelOnly" class="validation-summary"></div>
+                <input type="submit" value="Ingresar" class="btn w-100 my-2" style="background-color: #029BD5; color: #fff" />
+            </form>
+        </article>
+
+        <article class="p-3 my-3 authentication-box">
+            <section class="my-2 text-center">
+                <a style="color: #393939;" asp-controller="Authentication" asp-action="Recover">¿Olvidaste tu contraseña?</a>
+            </section>
+        </article>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

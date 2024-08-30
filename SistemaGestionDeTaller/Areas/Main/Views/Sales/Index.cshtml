@@ -1,0 +1,70 @@
+﻿@model IEnumerable<SistemaGestionDeTaller.Areas.Main.Models.Sale>
+
+@{
+    ViewData["Title"] = "Ventas";
+}
+
+<p class="display-6">Ventas</p>
+
+<div class="mt-3 mb-5 d-flex justify-content-between">
+    <a class="btn btn-secondary" asp-action="AddCart">
+        <i class="bi bi-plus-circle mx-1" style="color: #fff;"></i>
+        AGREGAR
+    </a>
+
+    <section class="d-flex">
+        <form method="get" asp-controller="Sales" asp-action="Index">
+            <div class="input-group">
+                <input class="form-control" type="date" name="date" />
+                <button class="btn btn-secondary" type="submit">Buscar</button>
+            </div>
+        </form>
+    </section>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">@Html.DisplayNameFor(Model => Model.Id)</th>
+            <th scope="col">@Html.DisplayNameFor(Model => Model.Date)</th>
+            <th scope="col">@Html.DisplayNameFor(Model => Model.TotalPrice)</th>
+            <th scope="col">@Html.DisplayNameFor(Model => Model.Concepts)</th>
+            <th scope="col">Opciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if(Model == null || Model.Count() <1)
+        {
+            <tr>
+                <td class="alert-danger text-center" colspan="5">No se han encontrado resultados.</td>
+            </tr>
+        }
+        else
+        {
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td scope="col">@item.Id</td>
+                    <td>@item.Date</td>
+                    <td>@item.TotalPrice</td>
+                    <td>
+                        <a class="btn" style="color: #fff; background-color: #D1A7FF;" asp-action="Details" asp-route-id="@item.Id">
+                            Ir al detalle
+                            <i class="bi bi-arrow-right-short" style="color: #fff;"></i>
+                        </a>
+                    </td>
+                    <td>
+                        <div class="d-flex">
+                            <form method="post">
+                                <input type="hidden" name="id" value="@item.Id" />
+                                <button type="submit" class="btn mx-1" style="background-color: #73D9E2;" asp-controller="Report" asp-action="ReportSale">
+                                    <i class="bi bi-printer" style="color: #fff;"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

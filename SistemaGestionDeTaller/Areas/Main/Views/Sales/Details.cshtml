@@ -1,0 +1,77 @@
+﻿@model SistemaGestionDeTaller.Areas.Main.Models.Sale
+
+@{
+    ViewData["Title"] = "Detalles";
+}
+
+<p class="display-6">Detalles</p>
+
+<div class="my-3">
+    <a class="btn py-1 btn-secondary" asp-action="Index">
+        <i class="bi bi-box-arrow-in-left" style="color: #fff;"></i>
+        Regresar
+    </a>
+    <button class="btn mx-1" style="background-color: #FC9482;" data-bs-toggle="modal" data-bs-target="#modalDeleteItem">
+        <i class="bi bi-trash" style="color: #fff;"></i>
+    </button>
+</div>
+
+<div class="modal fade" id="modalDeleteItem" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalDeleteItemLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="modalDeleteItemLabel">Eliminar</h1>
+            </div>
+            <div class="modal-body">
+                <p>¿Está seguro que desea eliminar este registro?</p>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <form asp-action="Delete" method="post">
+                    <input type="hidden" name="id" value="@Model.Id" />
+                    <button type="submit" class="btn btn-danger" style="background-color: #FC9482;" asp-action="Delete">
+                        Eliminar
+                        <i class="bi bi-trash" style="color: #fff;"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div>
+    <span class="fw-bold">Numero de venta:</span>
+    <span>#@Model.Id</span>
+</div>
+<div>
+    <span class="fw-bold">Fecha y hora:</span>
+    <span>@Model.Date</span>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Producto</th>
+            <th scope="col">Unidades</th>
+            <th scope="col">Precio unidad</th>
+            <th scope="col">Precio total</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Concepts)
+        {
+            <tr>
+                <td>@item.NameProduct</td>
+                <td>@item.Units</td>
+                <td>@item.UnitPrice</td>
+                <td>@item.TotalPrice</td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <th scope="col" colspan="3">Total</th>
+            <td>@Model.TotalPrice</td>
+        </tr>
+    </tfoot>
+</table>

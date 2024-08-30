@@ -1,0 +1,64 @@
+﻿@model List<SistemaGestionDeTaller.Areas.Main.Models.Product>
+
+@{
+    ViewData["Title"] = "Registrar venta";
+}
+
+<p class="display-6">Registrar venta</p>
+
+<a class="btn py-1 my-3 btn-secondary" asp-action="Index">
+    <i class="bi bi-box-arrow-in-left" style="color: #fff;"></i>
+    Regresar
+</a>
+
+
+<div class="d-flex justify-content-between align-items-center">
+    <div>
+        <form class="input-group">
+            <input class="form-control" type="text" placeholder="Nombre de producto..." />
+            <button type="submit" class="btn btn-secondary">
+                <i class="bi bi-search" style="color:#fff;"></i>
+                Buscar
+            </button>
+        </form>
+    </div>
+    <div>
+        <a class="btn" style="color: #fff; background-color: #A6DF98;" asp-action="Cart">
+            Confirmar venta
+            <i class="bi bi-cart" style="color: #fff;"></i>
+        </a>
+    </div>
+</div>
+
+<div class="mt-4 d-flex flex-wrap">
+    @if(Model != null)
+    {
+        @foreach (var item in Model)
+        {
+            if (item.Stock > 0)
+            {
+                <div class="card text-center m-2" style="width: 250px;">
+                    <div class="card-body">
+                        <p class="my-2"><strong>@item.Name</strong></p>
+                        <p>$@item.SalePrice</p>
+                        <p>Stock: @item.Stock</p>
+                    </div>
+                    <div class="card-footer">
+                        <form method="post">
+                            <input type="number" name="product" value="@item.Id" hidden />
+                            <div class="input-group w-100">
+                                <label class="input-group-text">Cantidad:</label>
+                                <input class="form-control" type="number" value="1" min="1" max="@item.Stock" name="unit" />
+                            </div>
+                            <button class="btn m-1 w-100" style="background-color: #A6DF98; color: #fff;" type="submit" asp-action="AddCart">Añadir al carrito</button>
+                        </form>
+                    </div>
+                </div>
+            }
+        }
+    }
+    else
+    {
+        <p class="alert-secondary py-2 px-1 my-2">No hay productos cargados para la venta.</p>
+    }
+</div>

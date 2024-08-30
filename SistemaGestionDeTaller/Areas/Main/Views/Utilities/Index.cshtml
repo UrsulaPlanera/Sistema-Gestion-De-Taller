@@ -1,0 +1,160 @@
+﻿@model SistemaGestionDeTaller.Areas.Main.Models.Utilities
+
+@{
+    ViewData["Title"] = "Inicio";
+}
+
+<p class="display-6">Inicio</p>
+
+<section class="my-1 text-center">
+    <a class="btn mx-3 my-2" style="background-color: #A6DF98; color: #fff;" asp-controller="Services" asp-action="Create">
+        <i class="bi bi-car-front-fill" style="color: #fff;"></i>
+        Registrar nuevo service
+    </a>
+
+    <a class="btn mx-3 my-2" style="background-color: #D1A7FF; color: #fff;" asp-controller="Products" asp-action="Create">
+        <i class="bi bi-tools" style="color: #fff;"></i>
+        Registrar nuevo producto
+    </a>
+
+    <a class="btn mx-3 my-2" style="background-color: #73D9E2; color: #fff;" asp-controller="Sales" asp-action="AddCart">
+        <i class="bi bi-cart" style="color: #fff;"></i>
+        Registrar nueva venta
+    </a>
+</section>
+
+<section class="mb-3" style="border-bottom: 1px solid #dee2e6;">
+    <span style="font-size: 1.5rem">Ventas del día</span>
+    
+    @{
+        if (Model.SaleList != null && Model.SaleList.Count != 0)
+        {
+            var total = new decimal();
+            @foreach (var item in Model.SaleList)
+            {
+                total += item.TotalPrice;
+            }
+
+            <span class="mx-2">$@total</span>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Numero de venta</th>
+                        <th scope="col">Fecha y hora</th>
+                        <th scope="col">Total de venta</th>
+                        <th scope="col">Detalle</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.SaleList)
+                    {
+                        <tr>
+                            <td scope="col">@item.Id</td>
+                            <td>@item.Date</td>
+                            <td>@item.TotalPrice</td>
+                            <td>
+                                <a class="btn" style="color: #fff; background-color: #D1A7FF;" asp-controller="Sales" asp-action="Details" asp-route-id="@item.Id">
+                                    Ir al detalle
+                                    <i class="bi bi-arrow-right-short" style="color: #fff;"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <p class="alert-secondary">Hoy no se han registrado ventas.</p>
+        }
+    }
+</section>
+
+<section class="mb-3" style="border-bottom: 1px solid #dee2e6;">
+
+    <span style="font-size: 1.5rem">Services del día</span>
+
+    @{
+        if (Model.ServicesList != null && Model.ServicesList.Count != 0)
+        {
+            var total = new decimal();
+            @foreach (var item in Model.ServicesList)
+            {
+                total += item.TotalPrice;
+            }
+
+            <span class="mx-2">$@total</span>
+
+            <br />
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Patente</th>
+                        <th scope="col">Descripcion</th>
+                        <th scope="col">Precio total</th>
+                        <th scope="col">Opciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var listItem in Model.ServicesList)
+                    {
+                        <tr>
+                            <td>@listItem.Patent</td>
+                            <td>@listItem.Description</td>
+                            <td>@listItem.TotalPrice</td>
+                            <td>
+                                <a class="btn" style="background-color: #D1A7FF; color: #fff;" asp-controller="Services" asp-action="Details" asp-route-id="@listItem.Id">
+                                    Detalles
+                                    <i class="bi bi-arrow-right-short" style="color: #fff;"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            
+        }
+        else
+        {
+            <p class="alert-secondary">Hoy no se han registrado services.</p>
+        }
+    }
+</section>
+
+<section class="mb-3" style="border-bottom: 1px solid #dee2e6;">
+    <p style="font-size: 1.5rem">Stock Agotado</p>
+
+    @{
+        if (Model.ProductsList != null && Model.ProductsList.Count != 0)
+        {
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Opciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach (var listItem in Model.ProductsList)
+                {
+                    <tr>
+                        <td>@listItem.Name</td>
+                        <td>
+                                <a class="btn" style="background-color: #A6DF98; color: #fff;" asp-controller="Products" asp-action="Edit" asp-route-id="@listItem.Id">
+                                Ir
+                                <i class="bi bi-arrow-right-short" style="color: #fff;"></i>
+                            </a>
+                        </td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <p class="alert-secondary">No hay productos registrados sin stock disponible.</p>
+        }
+    }
+</section>
